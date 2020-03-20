@@ -1,1 +1,1 @@
-# auth-core
+# SSH-AUTH
