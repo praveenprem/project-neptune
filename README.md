@@ -1,14 +1,14 @@
 # NexusAuth
 
 <img width="100" src="resources/Icon.png" alt="app icon">
-NexusAuth is a SSH authentication plugin written for Unix based systems which allows to source public keys from an external source, extending from rudimentary static file based authentication.
+NexusAuth is an SSH authentication plugin written for Unix based systems which allow to source public keys from an external source, extending from rudimentary static file-based authentication.
 
-This plugin will allow you to configure one of the following service as an authentication mechanism:
+This plugin will allow you to configure one of the following services as an authentication mechanism:
 - [GitHub](https://github.com/apps/sshauth)
 - AWS - _In development_
 - MySQL - _In development_
 
->This is **not** a replacement for the `authrorized_keys` file. It highly encouraged to still populate, few permanent public keys for failsafe purposes. 
+>This is **not** a replacement for the `authrorized_keys` file. It highly encouraged to still populate, few permanent public keys for failsafe purposes.
 
 ## Table of Contents
 
