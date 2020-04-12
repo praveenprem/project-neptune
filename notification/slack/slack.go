@@ -110,7 +110,7 @@ func (s *Slack) SlackSend(url string) error {
 				},
 				Accessory: &Accessory{
 					Type:     "image",
-					ImageUrl: "https://avatars0.githubusercontent.com/in/59005",
+					ImageUrl: "https://raw.githubusercontent.com/praveenprem/nexus-auth/develop/resources/Icon.png",
 					AltText:  "<https://github.com/apps/sshauth|SSHAUTH>",
 				},
 			},
