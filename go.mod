@@ -1,4 +1,4 @@
-module github.com/praveenprem/project-neptune
+module github.com/praveenprem/nexus-auth
 
 go 1.14
 

@@ -1,6 +1,7 @@
-# ProjectNeptune
+# NexusAuth
 
-Neptune is a SSH authentication plugin written for Unix based systems which allows to source public keys from an external source, extending from rudimentary static file based authentication.
+<img width="100" src="resources/Icon.png" alt="app icon">
+NexusAuth is a SSH authentication plugin written for Unix based systems which allows to source public keys from an external source, extending from rudimentary static file based authentication.
 
 This plugin will allow you to configure one of the following service as an authentication mechanism:
 - [GitHub](https://github.com/apps/sshauth)
@@ -40,7 +41,7 @@ All login attempts will have one of the following results.
 
 ## Logging
 This plugin will log for informative and debugging purposes, such as bad configuration.
-These logs can be found in `/var/log/neptune.log` when the plugin is run as `root`.
+These logs can be found in `/var/log/nexusauth.log` when the plugin is run as `root`.
 
 Logging is done using a third-party library [logging](https://github.com/praveenprem/logging).
 ### Logging Example
@@ -49,7 +50,7 @@ Logging is done using a third-party library [logging](https://github.com/praveen
 2020/04/12 14:20:45 info: input verification successful
 2020/04/12 14:20:45 info: loading config from system
 2020/04/12 14:20:45 info: loading configuration
-2020/04/12 14:20:45 info:  neptune found
+2020/04/12 14:20:45 info:  nexusauth found
 2020/04/12 14:20:45 info: configuration loaded
 2020/04/12 14:20:45 info: validating provider configuration
 2020/04/12 14:20:45 info: GitHub provider detected
@@ -118,6 +119,7 @@ SOFTWARE.
 [SSHAUTH](https://github.com/apps/sshauth) icon is composed of:
 - Icons made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/)
 - Icons made by [Those Icons](https://www.flaticon.com/authors/those-icons) from [www.flaticon.com](https://www.flaticon.com/)
+- Icons made by [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs) from [www.flaticon.com](https://www.flaticon.com/)
 
 [slack-notification-success]: resources/Slack-notification-success.png "Slack notification success"
 [slack-notification-fail]: resources/Slack-notification-fail.png "Slack notification failure"

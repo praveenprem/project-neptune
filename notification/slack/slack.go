@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/praveenprem/logging"
-	"github.com/praveenprem/project-neptune/codes"
+	"github.com/praveenprem/nexus-auth/codes"
 	"io/ioutil"
 	"net/http"
 )

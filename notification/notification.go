@@ -2,8 +2,8 @@ package notification
 
 import (
 	"errors"
-	"github.com/praveenprem/project-neptune/codes"
-	"github.com/praveenprem/project-neptune/notification/slack"
+	"github.com/praveenprem/nexus-auth/codes"
+	"github.com/praveenprem/nexus-auth/notification/slack"
 )
 
 /**

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/praveenprem/logging"
-	"github.com/praveenprem/project-neptune/codes"
-	"github.com/praveenprem/project-neptune/providers/github"
+	"github.com/praveenprem/nexus-auth/codes"
+	"github.com/praveenprem/nexus-auth/providers/github"
 )
 
 /**

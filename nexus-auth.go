@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"github.com/praveenprem/logging"
-	"github.com/praveenprem/project-neptune/codes"
-	"github.com/praveenprem/project-neptune/configuration"
-	"github.com/praveenprem/project-neptune/notification"
-	"github.com/praveenprem/project-neptune/providers"
+	"github.com/praveenprem/nexus-auth/codes"
+	"github.com/praveenprem/nexus-auth/configuration"
+	"github.com/praveenprem/nexus-auth/notification"
+	"github.com/praveenprem/nexus-auth/providers"
 	"os"
 	"strings"
 )
@@ -52,7 +52,7 @@ type Application interface {
 	verify()
 }
 
-const configPath string = "/etc/neptune/"
+const configPath string = "/etc/nexusauth/"
 
 //parser defines a function that creates a flag set from the package flag
 func (app *App) parser() {
@@ -82,8 +82,8 @@ func main() {
 		}
 	}()
 
-	logging.LogFilePath = "/var/log/neptune.log"
-	logging.Tag = "neptune"
+	logging.LogFilePath = "/var/log/nexusauth.log"
+	logging.Tag = "nexusauth"
 
 	var (
 		app    App
