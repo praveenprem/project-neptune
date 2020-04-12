@@ -1,0 +1,4 @@
+github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=
+github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
+github.com/praveenprem/logging v0.0.1 h1:MNv5s00DixcfQI/B57AhkqSApEWJLcMMSALVWskKEGI=
+github.com/praveenprem/logging v0.0.1/go.mod h1:oSxcKry6jSwGFgqV2rZeN5ex3B85pknGe+06nKpzdKw=
