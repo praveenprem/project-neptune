@@ -16,3 +16,6 @@
 
 .idea/*
 !.idea/.name
+
+# Excluding GitHub plugin private key
+resources/github.pem
