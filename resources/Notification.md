@@ -3,7 +3,7 @@ Notification service can be configured to provide push notification on user auth
 
 Below are a list of notification service providers, currently supported by NexusAuth.
 
-> Keys `notification` is the same keys also listed in the README.md.
+> Keys `notification` is the same key also listed in the README.md.
 
 - [Slack](#slack)
     - [Pre-requisite](#pre-requisite)

@@ -3,6 +3,23 @@
 <img width="100" src="resources/Icon.png" alt="app icon">
 NexusAuth is an SSH authentication plugin written for Unix based systems which allow to source public keys from an external source, extending from rudimentary static file-based authentication.
 
+## Table of Contents
+- [Getting Started](#getting-started)
+- [Pre-requisites](#pre-requisites)
+- [Installation](#installation)
+    - [Configuration](#configuration)
+    - [Sample](#sample)
+    - [Integration with system SSH](#integration-with-system-ssh)
+    - [Test installation](#test-installation)
+- [Alerting](#alerting)
+- [Logging](#logging)
+- [Logging Example](#logging-example)
+- [Development](#development)
+- [License](#license)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgments)
+
+## Getting Started
 This plugin will allow you to configure one of the following services as an authentication mechanism:
 - [GitHub](https://github.com/apps/sshauth)
 - AWS - _In development_
@@ -10,12 +27,9 @@ This plugin will allow you to configure one of the following services as an auth
 
 >This is **not** a replacement for the `authrorized_keys` file. It highly encouraged to still populate, few permanent public keys for failsafe purposes.
 
-## Table of Contents
-
-## Getting Started
 Following instruction will guide you through how to install and configure this plugin on a Unix/Linux server.
 
-### Prerequisites
+## Pre-requisites
 - Root access to the server in question
 - Administrative access to one of third-party services listed above
 - Uninterrupted connection to the server in questions, especially when making changes to the SSH daemon.
@@ -27,7 +41,7 @@ Following instruction will guide you through how to install and configure this p
 - Copy the binary file to system path. `install $PWD/nexus-auth /usr/local/bin/nexus-auth`
 - Initialise the application configuration. `nexus-auth -init`
 
-## Configuration
+### Configuration
 Configuration can be located in the `/etc/nexusauth/config.json`. Following is the structure of the configuration file:
 - **host** - Unique identifier of server
 - **admin_user** - System user with administrator privilege
@@ -36,7 +50,8 @@ Configuration can be located in the `/etc/nexusauth/config.json`. Following is t
 - **provider** - Configuration of authentication provider
     - **Name** - Name of the authentication provider. [Supported providers](resources/Providers.md)
     - **Configuration** - Configuration of the named authentication provider.
-### Sample
+
+#### Sample
 ```json
 {
     "host": "",
@@ -48,6 +63,29 @@ Configuration can be located in the `/etc/nexusauth/config.json`. Following is t
     "user": "",
     "notification": null
 }
+```
+
+### Integration with system SSH
+Update the /etc/ssh/sshd_config to reflect the following changes:
+- `AuthorizedKeysCommand /usr/local/bin/nexus-auth -u %u -k %k`
+- `AuthorizedKeysCommandUser root`. This differs on which user owns the **nexus-auth** binary execution file.
+
+Apply the changes made to the SSH daemon using system specific command. I.E. `service ssh restart` for Ubuntu.
+It is recommended to test the installation before applying these changes.
+
+### Test installation
+For testing the installation and configuration, run the following command:
+
+```
+nexus-auth -u <USERNAME> -k "<PUBLIC KEY>"
+```
+
+- `<USERNAME>` is the admin or default user of the server, defined under `admin_user` or `user`
+- `<PUBLIC KEY>` is a public key from any user who's public key can be retrieved from the third-party service.
+    In order to mimic the SSH daemon place the public key with in `" "` and exclude the trailing comment of the key.
+    
+```bash
+sshauth -u ubuntu "ssh-rsa AAAAB3Nza.......................F7XR2rshD/imqQ6BmjJgw0ejsL+xGj74I62GM3JdTWEcj5OgtHvPcZ6NOb"
 ```
 
 ## Alerting
@@ -64,7 +102,7 @@ Alert will provide the following information:
 This plugin will log for informative and debugging purposes, such as bad configuration.
 These logs can be found in `/var/log/nexusauth.log` when the plugin is run as `root`.
 
-Logging is done using a third-party library [logging](https://github.com/praveenprem/logging).
+Logging is achieve using a third-party library [logging](https://github.com/praveenprem/logging).
 ### Logging Example
 ```
 2020/04/12 14:20:45 info: =============== starting authentication ===============
