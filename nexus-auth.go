@@ -8,6 +8,7 @@ import (
 	"github.com/praveenprem/nexus-auth/configuration"
 	"github.com/praveenprem/nexus-auth/notification"
 	"github.com/praveenprem/nexus-auth/providers"
+	"golang.org/x/crypto/ssh"
 	"os"
 	"strings"
 )
@@ -57,7 +58,7 @@ const configPath string = "/etc/nexusauth/"
 //parser defines a function that creates a flag set from the package flag
 func (app *App) parser() {
 	flag.StringVar(&app.User, "u", "", "system user authenticating against")
-	flag.StringVar(&app.Key, "k", "", "public key produced for authentication by user's agent")
+	flag.StringVar(&app.Key, "k", "", "fingerprint of the public key produced for authentication by user's agent")
 	flag.BoolVar(&app.ConfigInit, "init", false, "initialise default configuration")
 	flag.BoolVar(&app.Version, "version", false, "software version")
 	flag.BoolVar(&app.Debug, "debug", false, "enable debug mode")
@@ -72,6 +73,16 @@ func (app *App) verify() {
 		logging.Error(codes.CODE2)
 	}
 	logging.Info("input verification successful")
+}
+
+func getFingerPrint(pubKey string) (*string, error) {
+	key, _, _, _, err := ssh.ParseAuthorizedKey([]byte(pubKey))
+	if err != nil {
+		logging.Error(err.Error())
+		return nil, err
+	}
+	fingerPrint := ssh.FingerprintSHA256(key)
+	return &fingerPrint, err
 }
 
 func main() {
@@ -118,6 +129,9 @@ func main() {
 		logging.Error(err.Error())
 	}
 
+	logging.Info(app.User)
+	logging.Info(app.Key)
+
 	message.Host = config.Host
 	message.SystemUser = app.User
 	if app.User == config.User || app.User == config.SudoUser {
@@ -126,7 +140,12 @@ func main() {
 		} else {
 			for _, user := range users {
 				for _, key := range user.Keys {
-					if key == app.Key {
+					fingerPrint, err := getFingerPrint(key)
+					if err != nil {
+						logging.Error(codes.CODE10)
+						break
+					}
+					if *fingerPrint == app.Key {
 						message.User = user.Username
 						message.Provider = strings.Title(config.Provider.Name)
 					}
