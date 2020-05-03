@@ -3,11 +3,8 @@ package github
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/praveenprem/logging"
 	"github.com/praveenprem/nexus-auth/codes"
-	"io/ioutil"
-	"os"
 )
 
 /**
@@ -72,14 +69,5 @@ func (c *Configuration) getRole(username string) string {
 }
 
 func loadPrivateKey() []byte {
-	var PrivateKey = os.Getenv("githubPem")
-	if PrivateKey == "" {
-		panic(codes.CODE8)
-	}
-	if pKey, err := ioutil.ReadFile(PrivateKey); err != nil {
-		panic(fmt.Sprintf("build failed: %s", err.Error()))
-	} else {
-		return pKey
-	}
-	return nil
+	return []byte(PEM)
 }
