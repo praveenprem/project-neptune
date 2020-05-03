@@ -21,23 +21,44 @@ Following instruction will guide you through how to install and configure this p
 - Uninterrupted connection to the server in questions, especially when making changes to the SSH daemon.
 
 ## Installation
-TODO:
+- Download the latest release version of the [Nexus-auth](https://github.com/praveenprem/nexus-auth/releases/latest) for your system
+- Unzip the archive to current directory. `unzip nexus-auth-*-amd64.zip`
+- Give execution permission. `chmod +x nexus-auth`
+- Copy the binary file to system path. `install $PWD/nexus-auth /usr/local/bin/nexus-auth`
+- Initialise the application configuration. `nexus-auth -init`
+
+## Configuration
+Configuration can be located in the `/etc/nexusauth/config.json`. Following is the structure of the configuration file:
+- **host** - Unique identifier of server
+- **admin_user** - System user with administrator privilege
+- **user** - System user _without_ administrator privilege
+- **notification** - Notification service configuration. [Supported notification services](resources/Notification.md)
+- **provider** - Configuration of authentication provider
+    - **Name** - Name of the authentication provider. [Supported providers](resources/Providers.md)
+    - **Configuration** - Configuration of the named authentication provider.
+### Sample
+```json
+{
+    "host": "",
+    "provider": {
+        "Configuration": null,
+        "Name": ""
+    },
+    "admin_user": "",
+    "user": "",
+    "notification": null
+}
+```
 
 ## Alerting
-Current version support alerting with [Slack Incoming Webhooks](https://api.slack.com/incoming-webhooks). 
 
 Alert will provide the following information:
-   - **User** - User name of the third-party service that public key matched
-   - **Provider** - Name of the third-party service that has been used to authenticate the user
+   - **User** - User name of the third-party service public key matched
+   - **Provider** - Name of the third-party service has been used to authenticate the user
    - **Host** - Host name defined in the configuration file
    - **System User** - System username used for authentication
 
-### Sample notifications
-All login attempts will have one of the following results.
-#### Success
-![slack-notification-success]
-#### Failure
-![slack-notification-fail]
+#### Provider specific notification can be found in the [Notification Service configuration](resources/Notification.md) documentation.
 
 ## Logging
 This plugin will log for informative and debugging purposes, such as bad configuration.
@@ -120,6 +141,3 @@ SOFTWARE.
 - Icons made by [Freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com/)
 - Icons made by [Those Icons](https://www.flaticon.com/authors/those-icons) from [www.flaticon.com](https://www.flaticon.com/)
 - Icons made by [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs) from [www.flaticon.com](https://www.flaticon.com/)
-
-[slack-notification-success]: resources/Slack-notification-success.png "Slack notification success"
-[slack-notification-fail]: resources/Slack-notification-fail.png "Slack notification failure"
