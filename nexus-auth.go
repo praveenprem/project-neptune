@@ -129,8 +129,8 @@ func main() {
 		logging.Error(err.Error())
 	}
 
-	logging.Info(app.User)
-	logging.Info(app.Key)
+	logging.Info(fmt.Sprintf("Username: %s", app.User))
+	logging.Info(fmt.Sprintf("Fingerprint: %s", app.Key))
 
 	message.Host = config.Host
 	message.SystemUser = app.User
