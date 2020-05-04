@@ -67,7 +67,7 @@ Configuration can be located in the `/etc/nexusauth/config.json`. Following is t
 
 ### Integration with system SSH
 Update the /etc/ssh/sshd_config to reflect the following changes:
-- `AuthorizedKeysCommand /usr/local/bin/nexus-auth -u %u -k %k`
+- `AuthorizedKeysCommand /usr/local/bin/nexus-auth -u %u -k %f`
 - `AuthorizedKeysCommandUser root`. This differs on which user owns the **nexus-auth** binary execution file.
 
 Apply the changes made to the SSH daemon using system specific command. I.E. `service ssh restart` for Ubuntu.
@@ -77,7 +77,7 @@ It is recommended to test the installation before applying these changes.
 For testing the installation and configuration, run the following command:
 
 ```
-nexus-auth -u <USERNAME> -k "<PUBLIC KEY>"
+nexus-auth -u <USERNAME> -k "<PUBLIC KEY Fingerprint>"
 ```
 
 - `<USERNAME>` is the admin or default user of the server, defined under `admin_user` or `user`
@@ -85,7 +85,7 @@ nexus-auth -u <USERNAME> -k "<PUBLIC KEY>"
     In order to mimic the SSH daemon place the public key with in `" "` and exclude the trailing comment of the key.
     
 ```bash
-sshauth -u ubuntu "ssh-rsa AAAAB3Nza.......................F7XR2rshD/imqQ6BmjJgw0ejsL+xGj74I62GM3JdTWEcj5OgtHvPcZ6NOb"
+sshauth -u ubuntu SHA256:OZvuPKD7k9uS15jeV3HilpDXutQRPrGct2UWhQDRLQA
 ```
 
 ## Alerting
@@ -100,7 +100,7 @@ Alert will provide the following information:
 
 ## Logging
 This plugin will log for informative and debugging purposes, such as bad configuration.
-These logs can be found in `/var/log/nexusauth.log` when the plugin is run as `root`.
+These logs can be found in `/var/log/nexusauth.log` when the plugin runs as `root`.
 
 Logging is achieve using a third-party library [logging](https://github.com/praveenprem/logging).
 ### Logging Example
