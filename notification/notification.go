@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/praveenprem/logging"
-	"github.com/praveenprem/nexus-auth/codes"
-	"github.com/praveenprem/nexus-auth/notification/slack"
+	"github.com/razorcorp/nexus-auth/codes"
+	"github.com/razorcorp/nexus-auth/notification/slack"
 	"io/ioutil"
 	"os"
 )

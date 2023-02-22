@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/praveenprem/logging"
-	"github.com/praveenprem/nexus-auth/codes"
-	"github.com/praveenprem/nexus-auth/providers/github"
+	"github.com/razorcorp/nexus-auth/codes"
+	"github.com/razorcorp/nexus-auth/providers/github"
 )
 
 /**
@@ -31,7 +31,7 @@ type (
 	}
 )
 
-//Authenticate defines the logic used to determine the authentication provider
+// Authenticate defines the logic used to determine the authentication provider
 // and translation of the data between main application and provider
 func (p *Provider) Authenticate(username string) (users []KeyChain, err error) {
 	var keyChain []KeyChain
@@ -57,7 +57,7 @@ func (p *Provider) Authenticate(username string) (users []KeyChain, err error) {
 	return keyChain, nil
 }
 
-//valid define logic to validate if the provider configuration
+// valid define logic to validate if the provider configuration
 func (p *Provider) valid() {
 	logging.Info("validating provider configuration")
 	if p.Name != "" || p.Configuration != nil {

@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"github.com/praveenprem/logging"
-	"github.com/praveenprem/nexus-auth/codes"
-	"github.com/praveenprem/nexus-auth/configuration"
-	"github.com/praveenprem/nexus-auth/notification"
-	"github.com/praveenprem/nexus-auth/providers"
+	"github.com/razorcorp/nexus-auth/codes"
+	"github.com/razorcorp/nexus-auth/configuration"
+	"github.com/razorcorp/nexus-auth/notification"
+	"github.com/razorcorp/nexus-auth/providers"
 	"golang.org/x/crypto/ssh"
 	"os"
 	"strings"
@@ -38,7 +38,7 @@ var (
 	VERSION string
 )
 
-//App struct hold application configuration used throughout application
+// App struct hold application configuration used throughout application
 type App struct {
 	User       string //KeyChain given for authentication
 	Key        string //Key is the public key given by authentication provider
@@ -55,7 +55,7 @@ type Application interface {
 
 const configPath string = "/etc/nexusauth/"
 
-//parser defines a function that creates a flag set from the package flag
+// parser defines a function that creates a flag set from the package flag
 func (app *App) parser() {
 	flag.StringVar(&app.User, "u", "", "system user authenticating against")
 	flag.StringVar(&app.Key, "k", "", "fingerprint of the public key produced for authentication by user's agent")
@@ -65,7 +65,7 @@ func (app *App) parser() {
 	flag.Parse()
 }
 
-//verify defines a validation function for commandline arguments provided at runtime
+// verify defines a validation function for commandline arguments provided at runtime
 func (app *App) verify() {
 	if app.User == "" {
 		logging.Error(codes.CODE1)

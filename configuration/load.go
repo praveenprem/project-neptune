@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/praveenprem/logging"
-	"github.com/praveenprem/nexus-auth/notification"
-	"github.com/praveenprem/nexus-auth/providers"
+	"github.com/razorcorp/nexus-auth/notification"
+	"github.com/razorcorp/nexus-auth/providers"
 	"os"
 )
 
